@@ -1,158 +1,868 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>Python Flask ReplAuth</title>
-<script src="https://replit.com/public/js/repl-auth-v2.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Gogo Benson - Frontend Web Developer </title>
+    <link rel="icon" type="image/x-icon" href="./Images/favicon.png">
+    <link rel="stylesheet" media="screen and (max-width: 821px)" href="responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&family=Ubuntu:wght@300;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@500&family=Ubuntu:wght@300;500;700&display=swap');
+
+        body {
+            background-color: #1f1f38;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        #navbar {
+            line-height: 4rem;
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            border-bottom: .5px solid #ffffff52;
+            border-width: 80%;
+            margin-bottom: 1rem;
+        }
+
+        #navbar ul {
+            list-style: none;
+        }
+
+        #navbar ul li {
+            margin: 0px 1rem;
+        }
+
+        #navbar ul li a {
+            text-decoration: none;
+            padding: 0.5rem 0.9rem;
+
+        }
+
+        .right {
+            display: none;
+        }
+
+        .checkBtn {
+            display: none;
+        }
+
+        #check {
+            display: none;
+        }
+
+        .nav-col a:hover {
+            border-radius: .4rem;
+            color: #1f1f38;
+            background-color: #fff;
+        }
+
+
+        /* Home Section */
+        .home-left,
+        .home-right {
+            width: 48%;
+            padding: 2rem;
+        }
+
+        .home-right {
+            padding: 0;
+        }
+
+        .home-left h6,
+        h4 {
+            color: hsl(240deg 8% 43%);
+            margin: 1rem 0;
+            margin-left: 3px;
+            font-size: 1.2rem;
+        }
+
+        .home-left h1 {
+            font-size: 2.5rem;
+        }
+
+        .home-right {
+            position: relative;
+        }
+
+        .home-right img {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-size: cover;
+            border-radius: 62%;
+            height: 100%;
+        }
+
+        .circle {
+            width: 17rem;
+            height: 17rem;
+            border-radius: 50%;
+            padding: .5rem;
+            position: relative;
+        }
+
+        /* About Section */
+        .about-left,
+        .about-right {
+            width: 48%;
+        }
+
+        .about-right {
+            padding-right: 4rem;
+        }
+
+        .aboout-left {
+            position: relative;
+        }
+
+        .about-left img {
+            width: 90%;
+            border-radius: 1rem;
+        }
+
+        .about-content p {
+            margin-bottom: 2rem;
+        }
+
+
+        /* Skills */
+        #skills {
+            margin-top: 3rem;
+        }
+
+        .skills-left {
+            width: 50%;
+        }
+
+        .skills-left img {
+            width: 70%;
+        }
+
+        .skills-right {
+            width: 50%;
+        }
+
+        .skillss-container {
+            width: 100%;
+        }
+
+        .html {
+            width: 90%;
+            height: .5rem;
+            background-color: #e54c21;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+
+        .css {
+            width: 80%;
+            height: .5rem;
+            background-color: #00a0e4;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+
+        .js {
+            width: 65%;
+            height: .5rem;
+            background-color: yellow;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+
+        .bootstrap {
+            width: 50%;
+            height: .5rem;
+            background-color: #7952b3;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+
+        .reactjs {
+            width: 30%;
+            height: .5rem;
+            background-color: #61dafb;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+
+        .learning {
+            width: 100%;
+            height: .5rem;
+            background-color: #61dbfb;
+            margin: 1rem 0;
+            border-radius: 12px;
+        }
+
+        .bar {
+            margin: 2rem 0;
+        }
+
+        .bar-content {
+            position: absolute;
+            bottom: 10px;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right-skills {
+            right: 0;
+        }
+
+
+        /* Services Container */
+        .services-container {
+            margin: auto;
+            overflow: hidden;
+            width: 80%;
+        }
+
+        .test-item {
+            width: 20rem;
+            margin: 0 2rem;
+            background: #2c2c6c;
+            border: .5px solid #2c2c6c;
+            border-radius: 1.5rem;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: all .5s;
+        }
+
+        .test-item:hover {
+            background-color: transparent;
+        }
+
+        .test-item img {
+            margin-bottom: 1.3rem;
+            width: 80%;
+        }
+
+        .test-item h1 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .services li .fa-solid {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.3rem;
+        }
+
+        .test-item p {
+            line-height: 20px;
+            font-size: .9rem;
+        }
+
+
+        /* Projects Section */
+        .projects-container {
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            flex-wrap: wrap;
+        }
+
+        .image-container {
+            bottom: 2rem;
+            height: 10rem;
+            position: relative;
+        }
+
+        .image-container img {
+            border-radius: 1rem;
+        }
+
+        .image-container .p-one {
+            width: 200px;
+        }
+
+        .p-three {
+            background: url('images/mobile-development.jpg');
+        }
+
+        .p-four {
+            background: url('images/mobile-development.jpg');
+        }
+
+        .projects-item {
+            overflow: hidden;
+            width: 20rem;
+            margin: 1rem;
+            background: #2c2c6c;
+            border-radius: 1.5rem;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .projects-item h1 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .projects-item p {
+            line-height: 20px;
+            font-size: .9rem;
+        }
+
+
+
+        /* Contact me Section */
+        .form {
+            display: flex;
+            width: 80%;
+            padding: 0 2rem;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-div input,
+        textarea {
+            border: 2px solid rgba(77, 181, 255, .4);
+            border-radius: .5rem;
+            width: 100%;
+            margin: 0.5rem 0rem;
+            font-size: .9rem;
+            background: transparent;
+            margin: 0.5rem 0rem;
+            padding: 0.5rem 1rem;
+            color: white;
+            resize: none;
+        }
+
+
+
+        /* Footer Section  */
+        #footer {
+            background-color: #4db5ff;
+            padding: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        ul li {
+            list-style: none;
+            margin: 0 1rem;
+        }
+
+        ul li a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #1f1f38;
+            transition: all .5s;
+        }
+
+        ul li a:hover {
+            color: #fff;
+        }
+
+
+        .font-awesome {
+            margin: 1.1rem auto;
+        }
+
+        .font-awesome li i {
+            background-color: #1f1f38;
+            padding: 0.6rem;
+            border: 1px solid #1f1f38;
+            color: #fff;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all .4s ease-in-out;
+        }
+
+        .font-awesome li i:hover {
+            border: 1px solid #1f1f38;
+            border-radius: .5rem;
+            background: transparent;
+            color: #1f1f38;
+        }
+
+        #footer p {
+            color: #1f1f38;
+            font-size: .9srem;
+        }
+
+
+        /* Scroll Top */
+        #scroll-top {
+            background-color: #4db5ff;
+            color: #151527;
+            padding: 9px;
+            border-radius: 9px;
+            width: 35px;
+            height: 35px;
+            position: fixed;
+            bottom: 1rem;
+            right: 4%;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2000;
+        }
+
+
+
+        /* Bottom Navigator */
+        #bottom {
+            position: fixed;
+            width: 100%;
+            height: 6rem;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            bottom: 0rem;
+        }
+
+        #bottom .bottom-nav {
+            height: 4rem;
+            padding: 0 2rem;
+            background-color: #151527;
+            border-radius: 3rem;
+            z-index: 1000;
+            display: -webkit-inline-box;
+        }
+
+        #bottom .bottom-nav li {
+            color: #fff;
+            width: 3rem;
+            height: 3rem;
+            cursor: pointer;
+            padding: 1rem;
+            border-radius: 50%;
+            transition: all .4s ease-in-out;
+        }
+
+        #bottom .bottom-nav ul a {
+            text-decoration: none;
+
+        }
+
+        #bottom .bottom-nav li:hover {
+            background-color: #4db5ff;
+        }
+
+        #bottom .bottom-nav li:active {
+            background-color: #4db5ff;
+        }
+
+        .cpy-white {
+            color: white;
+        }
+
+
+        /* Utility Classes */
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .roboto {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .s-between {
+            justify-content: space-between;
+        }
+
+        .s-around {
+            justify-content: space-around;
+        }
+
+        .s-center {
+            justify-content: center;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .f-col {
+            flex-direction: column;
+        }
+
+
+        .p-relative {
+            position: relative;
+        }
+
+        .t-white {
+            color: #fff;
+        }
+
+        .bg-color {
+            background-color: #1f1f38;
+        }
+
+        .t-center {
+            text-align: center;
+        }
+
+        .my-2 {
+            margin: 2rem 0;
+        }
+
+        .f-2 {
+            font-size: 2rem;
+        }
+
+        .m-b-1 {
+            margin-bottom: 1rem;
+        }
+
+        .w-50 {
+            width: 50%;
+        }
+
+        .w-80 {
+            width: 80%;
+        }
+
+        .h-50 {
+            height: 50vh;
+        }
+
+        .mx-1 {
+            margin: 0 1rem;
+        }
+
+        .m-top {
+            margin-top: 1rem;
+        }
+
+        .m-auto {
+            margin: auto;
+        }
+
+        .btn {
+            margin-left: 0 .5rem;
+            font-size: 1rem;
+            color: #4db5ff;
+            cursor: pointer;
+            padding: 0.75rem 1.2rem;
+            border: 1px solid #4db5ff;
+            border-radius: 0.4rem;
+            background: transparent;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .buttons a,
+        #hireme {
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            color: #1f1f38;
+            border-color: #fff;
+            background-color: #fff;
+        }
+
+        .live {
+            color: #1f1f38;
+            background-color: #4db5ff;
+        }
+    </style>
 </head>
 <body>
-	{% if user_id %}
-	<center>
-  <div class="box">
-    <center>
-    <div class="box-text-auth">
-      <p>
-        Hello, {{ user_name }}! ({{ user_id }})
-      </p>
+
+    <!-- Navbar Section -->
+    <nav id="navbar" class="flex s-around bg-color">
+        <div class="left-nav">
+            <h2 class="t-white">Gogo Benson</h2>
+        </div>
+        <div class="right-nav">
+            <ul class="flex">
+                <li><a href="./index.html" class="t-white roboto">Home</a></li>
+                <li><a href="#about" class="t-white roboto">About Me</a></li>
+                <li><a href="#skills" class="t-white roboto">Skills</a></li>
+                <li><a href="#services" class="t-white roboto">services</a></li>
+                <li><a href="#projects" class="t-white roboto">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Bottom Navigator -->
+    <section id="bottom">
+        <div class="bottom-nav flex s-center items-center">
+            <ul class="flex s-around items-center">
+                <a href="./gogo.html">
+                    <li class="bottomo-hover flex s-center items-center"><i class="fa-solid fa-house"></i></li>
+                </a>
+                <a href="#about">
+                    <li class="bottomo-hover flex s-center items-center"><i class="fa-solid fa-user"></i></li>
+                </a>
+                <a href="#skills">
+                    <li class="bottomo-hover flex s-center items-center"><i class="fa-solid fa-code"></i></li>
+                </a>
+                <a href="#services">
+                    <li class="bottomo-hover flex s-center items-center">
+                        <i class="fa-solid fa-rocket"></i>
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Home Section -->
+    <section id="home" class="flex s-around sw-80 m-auto">
+        <div class="home-left flex items-center">
+            <div class="home-content">
+                <h6 class="poppinss">Hi, I'm</h6>
+                <h1 class="t-white">Gogo Benson</h1>
+                <h4 class="poppinss">Frontend Web Developer</h4>
+                <a href="#" target="_blank"><button
+                        class="btn poppins">Resume</button></a>
+                <a class="btn live poppins" id="hireme" href="https://wa.me/+254707065115"
+                    target="_blank">Let's Talk</a>
+            </div>
+        </div>
+        <div class="home-right flex s-center items-center">
+            <div class="circle flex s-center items-center" id="mainImage">
+                <!-- Here in src replace the given link with your image link -->
+                <img src="pics/img7.jpg" alt="">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h1 class="t-center my-2 t-white f-2">About Me</h1>
+        <div class="about-container flex s-around ">
+            <div class=" about-left flex s-center items-center">
+                <!-- Here in src replade the given link with your secondary image link -->
+                <img src="images/hero.jpg" alt="" style="width: 50%;">
+            </div>
+
+            <div class="about-right flex">
+                <div class="about-content">
+                    <h1 class="t-white m-b-1 poppins">Gogo Benson</h1>
+                    <p class="t-white poppins">A self-tought Frontend Web Developer BCA student looking for
+                        an opportunity in Web Development. <br>
+                        Who is committed to study web development. Mindset to fullfill the life with
+                        wonderful memories and knowledge.</p>
+                    <a class="btn live poppins" id="hireme"
+                        href="https://wa.me/+254707065115">Hire Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h1 class="t-center my-2 t-white f-2">Skills</h1>
+        <div class="services-container flex s-around h-50"">
+        <div class=" skills-left flex s-center items-center">
+            <img src="images/web-development.jpg" alt="">
+        </div>
+
+        <div class="skills-right flex items-center">
+            <div class="skillss-container">
+                <div class="html bar p-relative"><span class="bar-content left t-white">HTML</span><span
+                        class="bar-content right-skills t-white">90%</span></div>
+                <div class="css bar p-relative"><span class="bar-content left t-white">CSS</span><span
+                        class="bar-content right-skills t-white">80%</span></div>
+                <div class="js bar p-relative"><span class="bar-content left t-white">JavaScript</span><span
+                        class="bar-content right-skills t-white">75%</span></div>
+                <div class="bootstrap bar p-relative"><span class="bar-content left t-white">Bootstrap</span><span
+                        class="bar-content right-skills t-white">50%</span></div>
+                <div class="reactjs bar p-relative"><span class="bar-content left t-white">ReactJs</span><span
+                        class="bar-content right-skills t-white">30%</span></div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h1 class=" t-center my-2 t-white f-2">Services</h1>
+        <div class="services-container flex s-center">
+            <div class="test-item flex f-col items-center">
+                <img src="images/pic11.jpg" alt="">
+                <h1 class="t-white poppins">Web Development</h1>
+                <p class="t-white poppins">Web Development is envolving everywhere. Every startup and every bussines
+                    have their own websites. As my passion I will help you to build your clean and fast website for your
+                    startup or your bussines.</p>
+            </div>
+            <div class="test-item flex f-col items-center">
+                <img src="images/social-media.jpg" alt="">
+                <h1 class="t-white poppins">Social Media Management</h1>
+                <p class="t-white poppins">Social Media is the power of future. So I'll help in developing brand
+                    awareness thow managing your social media handles and will to increase customer loyalty.</p>
+            </div>
+            <div class="test-item flex f-col items-center">
+                <img src="images/web-development.jpg" alt="">
+                <h1 class="t-white poppins">Growth Strategies</h1>
+                <p class="t-white poppins">As a web developer also I will help your brand to grow up . I will provide
+                    the growth strategies for your brand. And also help in searching techniques for your brand.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h1 class=" t-center my-2 t-white f-2">Projects</h1>
+        <div class="projects-container flex s-center">
+            <div class="projects-item flex f-col s-center items-center">
+                <div class="image-container p-one">
+                    <img src="images/Android 1.jpg" alt="">
+                </div>
+                <h1 class="t-white poppins">Weather App</h1>
+                <p class="t-white poppins"> A weather app using HTML, CSS and JavaScript. Fetch the weather from the
+                    openweather app using fetch api.</p>
+                <div class="buttons flex s-around">
+                    <a href="#"
+                        target="_blanks" class="btn mx-1 m-top">GitHub</a>
+                    <a href="#" target="_blanks" class="btn m-top live">Live
+                        Link</a>
+                </div>
+            </div>
+            <div class="projects-item flex f-col s-center items-center">
+                <div class="image-container p-one">
+                    <img src="images/Android 2.png" alt="">
+                </div>
+                <h1 class="t-white poppins">Burger King</h1>
+                <p class="t-white poppins">A simple landing page using HTML and CSS. This webiste is for burger shop who
+                    provides all the information of thir services at this landing page.</p>
+                <div class="buttons flex s-around">
+                    <a href="#" target="_blanks"
+                        class="btn mx-1 m-top">GitHub</a>
+                    <a href="#" target="_blanks" class="btn m-top live">Live
+                        Link</a>
+                </div>
+            </div>
+            <div class="projects-item flex f-col s-center items-center">
+                <div class="image-container p-two">
+                    <img src="images/pic3.png" alt="">
+                </div>
+
+                <h1 class="t-white poppins">MBA Chai Wala</h1>
+                <p class="t-white poppins">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic obcaecati cum
+                    nemo
+                    recusandae voluptas ipsum.s</sp>
+                <div class="buttons flex s-around">
+                    <a href="#" target="_blank"
+                        class="btn mx-1 m-top">GitHub</a>
+                    <a href="#" target="_blank"
+                        class="btn m-top live">Live Link</a>
+                </div>
+            </div>
+            <div class="projects-item flex f-col s-center items-center">
+                <div class="image-container p-three">
+                    <img src="images/mobile-development.jpg" alt="">
+                </div>
+
+                <h1 class="t-white poppins">Magic Notes App</h1>
+                <p class="t-white poppins">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic obcaecati cum
+                    nemo
+                    recusandae voluptas ipsum.s</p>
+                <div class="buttons flex s-around">
+                    <a href="#" target="_blank"
+                        class="btn mx-1 m-top">GitHub</a>
+                    <a href="#" target="_blank" class="btn m-top live">Live
+                        Link</a>
+                </div>
+            </div>
+            <div class="projects-item flex f-col s-center items-center">
+                <div class="image-container p-three">
+                    <img src="images/mobile-development.jpg" alt="">
+                </div>
+
+                <h1 class="t-white poppins">Login Form</h1>
+                <p class="t-white poppins">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic obcaecati cum
+                    nemo
+                    recusandae voluptas ipsum.s</p>
+                <div class="buttons flex s-around">
+                    <a href="#" target="_blank"
+                        class="btn mx-1 m-top">GitHub</a>
+                    <a href="#" target="_blank" class="btn m-top live">Live
+                        Link</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Me Section -->
+    <section id="contact" class="m-b-1">
+        <h1 class=" t-center my-2 t-white f-2">Contact Me</h1>
+        <div class="contact-container flex s-around items-centers">
+            <div class="form" id="contactForm">
+                <form action="" id="contactFrom">
+                    <div class="name form-div">
+                        <input type="text" name="name" id="name" class="poppins" placeholder="Enter Your Name">
+                    </div>
+                    <div class="email form-div">
+                        <input type="email" name="email" id="email" class="poppins" placeholder="Enter Your Email"
+                            required>
+                    </div>
+                    <div class="phone form-div">
+                        <input type="phone" name="phone" id="phone" class="poppins" placeholder="Enter Your Phone"
+                            required>
+                    </div>
+                    <div class="textarea form-div">
+                        <textarea name="text" id="textarea" cols="30" rows="10" class="poppins"
+                            placeholder="Enter Messages"></textarea>
+                    </div>
+                    <button type="submit" class="btn poppins" id="submit">Send</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+        <ul class="flex s-center w-80 m-auto my-2 res">
+            <li><a href="#home" class="poppinss">Home</a></li>
+            <li><a href="#about" class="poppinss">About</a></li>
+            <li><a href="#skills" class="poppinss">Skills</a></li>
+            <li><a href="#projects" class="poppinss">Projects</a></li>
+            <li><a href="#portfolio" class="poppinss">Portfolio</a></li>
+        </ul>
+        <ul class="flex s-center w-80 font-awesome ">
+            <a href="https://in.linkedin.com/in/Bencom Gogo" target="_blank">
+                <li><i class="fa-brands fa-linkedin-in"></i></li>
+            </a>
+            <a href="https://github.com/Infinity-Ben" target="_blank">
+                <li><i class="fa-brands fa-github"></i></li>
+            </a>
+            <a href="https://www.instagram.com/infinity_.g" target="_blank">
+                <li><i class="fa-brands fa-instagram"></i></li>
+            </a>
+            <a href="https://www.youtube.com/@Infinity.Gchannel" target="_blank">
+                <li><i class="fa-brands fa-youtube"></i></li>
+            </a>
+        </ul>
+        <p class="t-center my-2 poppins">&copy; All Rights Reserved - <span class="cpy-white poppins">Gogo
+                Benson</span></p>
+
+    </footer>
+
+    <div id="scroll-top" onclick="scrolltop()">
+        <span><i class="fa-solid fa-arrow-up"></i></span>
     </div>
-  <img src="{{ user_profile_image }}" width="200">
-    <center>
-  </center>
-  </div>
-	{% else %}
-  <center>
-    <center>
-      <div class="box">
-        <div class="box-text">
-            <h1>Hello!</h1>
-        </div>
-        <div class="box-button">
-          <button onclick="LoginWithReplit()"> Login w/ replit</button>
-        </div>
-    </center>
-      </div>
-  </center>
 
-	{% endif %}
 </body>
-<style>
-  html, body {
-  height: 100%;
-  width: 100%;
-  background-color:#121212;
-}
+<script src="/script copy.js"></script>
 
-@font-face {
-  font-family: "Font";
-  src: url("https://css.replit.cool/Chess/src/fonts/Poppins-Bold[1].ttf");
-}
-
-h1{
-  font-family:"Font";
-  font-size:75px;
-  color:#00bbf9;
-}
-
-p{
-  font-family:"Font";
-  font-size:22px;
-  color:#00bbf9;
-}
-
-a{
-  font-family:"Font";
-  color:white;
-  font-size:22px;
-  text-decoration:none;
-  cursor:help;
-  text-shadow:2px 2px #00bbf9;
-}
-
-address{
-  font-family:"Font";
-  font-size:18px;
-  text-shadow:2px 2px #00bbf9;
-}
-
-summary{
-  font-family:"Font";
-  font-size:20px;
-  text-shadow:2px 2px #c400fa;
-  transition:0.7s;
-}
-
-details{
-  font-family:"Font";
-  font-size:20px;
-  text-shadow:2px 2px #c400fa;
-}
-
-::placeholder{
-  font-family:"Font";
-  font-size:25px;
-  color:#787878;
-}
-
-button{
-  width:200px;
-  height:55px;
-  font-family:"Trebuchet MS";
-  font-size:25px;
-  box-shadow:4px 4px white;
-  border-color:#00fa79;
-  color:white;
-  background-color:#00fa79;
-  border-radius:5px;
-}
-
-button:hover{
-  font-family:"Trebuchet MS";
-  font-size:25px;
-  background-color:white;
-  box-shadow:4px 4px #00fa79;
-  color:#00fa79;
-  border-radius:5px;
-  border-color:white;
-  transition:0.7s;
-}
-
-button:disabled{
-  font-family:"Trebuchet MS";
-  font-size:25px;
-  background-color:white;
-  box-shadow:4px 4px #00fa79;
-  border-radius:5px;
-  border-color:#121212;
-  cursor:not-allowed;
-  color:white;
-}
-
-.box-position{
-  position:relative;
-}
-  
-.box{
-  width:300px;
-  height:300px;
-  background-color:#495057;
-  border-radius:5px;
-  border-color:white;
-  position:relative;
-  top:150px;
-}
-
-.box-text{
-  position:relative;
-  top:60px;
-}
-
-.box-button{
-  position:relative;
-  top:20px;
-}
-
-.box-text-auth{
-  position:relative;
-  top:10px;
-}
-</style>
 </html>
